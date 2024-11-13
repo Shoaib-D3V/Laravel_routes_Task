@@ -54,8 +54,8 @@ Route::middleware('auth')->group(function () {
 
         // Task 8: Manage tasks with URL /app/tasks/***.
         // Add ONE line to assign 7 resource routes to TaskController
-       // Route::resource('tasks', TaskController::class);
-        Route::post('/tasks', [TaskController::class, 'store']);
+        Route::resource('tasks', TaskController::class);
+       // Route::post('/tasks', [TaskController::class, 'store']);
 
         
     }); // End of the /app Route Group
