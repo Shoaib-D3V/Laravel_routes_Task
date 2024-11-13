@@ -40,6 +40,17 @@ Route::view('/about', 'pages.about')->name('about');
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 Route::redirect('log-in', 'login');
 
+
+public function show($name)
+{
+    $user = User::where('name', $name)->first();
+
+    if (!$user) {
+        return response()->json(['message' => 'User not found'], 404);
+    }
+
+    return response()->json($user);
+}
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 Route::middleware('auth')->group(function () {
