@@ -20,8 +20,8 @@ use App\Http\Controllers\Admin\StatsController;
 |
 */
 
-php artisan test
-Route::post('/users', [UserController::class, 'store']);
+
+
 
 
 // Task 1: point the main "/" URL to the HomeController method "index"
@@ -81,6 +81,7 @@ Route::middleware('auth')->group(function () {
 
 }); // End of the main Authenticated Route Group
 
+Route::post('/users', [UserController::class, 'store']);
 // One more task is in routes/api.php
 
 require __DIR__.'/auth.php';
