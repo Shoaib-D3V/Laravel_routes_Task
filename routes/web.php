@@ -19,7 +19,24 @@ use App\Http\Controllers\Admin\StatsController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+namespace App\Http\Controllers;
 
+use App\Models\User;
+use Illuminate\Http\Request;
+
+class UserController extends Controller
+{
+    public function show($name)
+    {
+        $user = User::where('name', $name)->first();
+
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
+        return response()->json($user);
+    }
+}
 
 
 
@@ -41,16 +58,6 @@ Route::view('/about', 'pages.about')->name('about');
 Route::redirect('log-in', 'login');
 
 
-public function show($name)
-{
-    $user = User::where('name', $name)->first();
-
-    if (!$user) {
-        return response()->json(['message' => 'User not found'], 404);
-    }
-
-    return response()->json($user);
-}
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 Route::middleware('auth')->group(function () {
