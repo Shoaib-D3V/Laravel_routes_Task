@@ -7,6 +7,10 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\StatsController;
+namespace App\Http\Controllers;
+
+use App\Models\User;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +24,17 @@ use App\Http\Controllers\Admin\StatsController;
 */
 
 // Task 1: point the main "/" URL to the HomeController method "index"
-Route::get('/', [HomeController::class, 'index']);
-
+// Route::get('/', [HomeController::class, 'index']);
+class HomeController extends Controller
+{
+    public function users()
+    {
+        // Fetch the user count, or create a mock value if necessary
+        $usersCount = User::count(); // This counts the number of users in the database
+        
+        return view('home', compact('usersCount')); // Passing the count to the view
+    }
+}
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
 // It doesn't use Route Model Binding, it expects $name as a parameter
 Route::get('/user/{name}', [UserController::class, 'show']);
