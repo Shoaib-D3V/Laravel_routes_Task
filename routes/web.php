@@ -20,6 +20,10 @@ use App\Http\Controllers\Admin\StatsController;
 |
 */
 
+php artisan test
+Route::post('/users', [UserController::class, 'store']);
+
+
 // Task 1: point the main "/" URL to the HomeController method "index"
  Route::get('/', [HomeController::class, 'index']);
 
