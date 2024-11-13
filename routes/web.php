@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\StatsController;
 // It doesn't use Route Model Binding, it expects $name as a parameter
 Route::get('/user/{name}', [UserController::class, 'show']);
 
+
 // Task 3: point the GET URL "/about" to the view
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
@@ -53,7 +54,9 @@ Route::middleware('auth')->group(function () {
 
         // Task 8: Manage tasks with URL /app/tasks/***.
         // Add ONE line to assign 7 resource routes to TaskController
-        Route::resource('tasks', TaskController::class);
+       // Route::resource('tasks', TaskController::class);
+        Route::post('/tasks', [TaskController::class, 'store']);
+
         
     }); // End of the /app Route Group
 
